@@ -1,0 +1,197 @@
+﻿@using CarRentingSystemMVC.Models.Car;
+@model AllViewModel
+
+@{
+    ViewBag.Title = "Rent A Car";
+}
+
+<div class="container">
+    <div class="row">
+        <form asp-controller="Cars" asp-action="All" method="get" class="bg-dark bg-opacity-75 p-4 mb-3 mx-auto" id="form">
+            <div class="col-6 d-inline-block offset-3">
+                <label asp-for="Category" class="form-label text-white"><i class="fa-solid fa-filter"></i> Filter by category:</label>
+                <select asp-for="Category" class="form-select mb-3">
+                    @if (ViewBag.CurrentCategory == null)
+                    {
+                        <option selected>Any</option>
+                    }
+                    else
+                    {
+                        <option>Any</option>
+                    }
+
+                    @foreach (var category in ViewBag.AllCategories)
+                    {
+                        if (category.Name == ViewBag.CurrentCategory)
+                        {
+                            <option selected>@category.Name</option>
+                        }
+                        else
+                        {
+                            <option>@category.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <br />
+
+            <div class="col-6 d-inline-block offset-3">
+                <label asp-for="Sort" class="form-label text-white"><i class="fa-solid fa-sort"></i> Order by price:</label>
+                <select asp-for="Sort" class="form-select mb-3">
+                    @if (Model.Sort == null)
+                    {
+                        <option selected>Any</option>
+                    }
+                    else
+                    {
+                        <option>Any</option>
+                    }
+
+                    @if (Model.Sort == "Ascending")
+                    {
+                        <option selected>Ascending</option>
+                    }
+                    else
+                    {
+                        <option>Ascending</option>
+                    }
+
+                    @if (Model.Sort == "Descending")
+                    {
+                        <option selected>Descending</option>
+                    }
+                    else
+                    {
+                        <option>Descending</option>
+                    }
+                </select>
+            </div>
+
+            <br />
+
+            <div class="col-3 d-inline-block offset-3">
+                <label asp-for="MinPrice" class="form-label text-white">Min Price:</label>
+                <div class="input-group mb-3 priceContainer">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input asp-for="MinPrice" class="form-control mb-3 w-50" />
+                </div>
+            </div>
+
+            <div class="col-3 d-inline-block">
+                @if (ViewBag.MaxPrice == null)
+                {
+                    <label asp-for="MaxPrice" class="form-label text-white">Max Price:</label>
+                    <div class="input-group mb-3 priceContainer">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input asp-for="MaxPrice" class="form-control mb-3 w-50" />
+                    </div>
+                }
+                else
+                {
+                    <label asp-for="MaxPrice"  class="form-label text-white">Max Price:</label>
+                    <div class="input-group mb-3 priceContainer">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input asp-for="MaxPrice" class="form-control mb-3 w-50" />
+                    </div>
+                }
+            </div>
+
+            <br />
+
+            <div class="col-6 d-inline-block offset-3 mb-1">
+                <button type="submit" class="btn btn-success d-inline-block w-100" id="searchButton">Search <i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <div class="col-6 d-inline-block offset-3">
+                <a asp-controller="Cars" asp-action="All" class="btn btn-primary d-inline-block w-100">Clear <i class="fa-solid fa-broom"></i></a>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        @{
+            Model.TotalPages = (int)Math.Ceiling((double)Model.TotalCars / AllViewModel.CarsPerPage);
+        }
+        @foreach (var car in Model.Cars)
+        {
+            <div class="col-xl-12 mb-3">
+                <div class="card d-lg-flex flex-lg-row gap-3 flex-md-column p-4 bg-dark bg-opacity-75" id="card">
+                    <div id="imageWrapper" class="flex-shrink-0">
+                        <i class="fa-solid fa-arrow-right fa-rotate-90"></i>
+                        <img src="@car.ImageUrl" class="image card-img-top h-100 w-100" alt="carImage">
+                        <p>Click to preview</p>
+                    </div>
+                    <div class="card-body" id="cardBody">
+                        <h4 class="card-title text-white">@car.Brand - @car.Model (@car.CategoryName)</h4>
+                        @if (car.CategoryName == "Mini")
+                        {
+                            <span class="badge rounded-pill bg-danger">Mini</span>
+                        }
+                        else if (car.CategoryName == "SUV")
+                        {
+                            <span class="badge rounded-pill bg-secondary">SUV</span>
+                        }
+                        else if (car.CategoryName == "Sport")
+                        {
+                            <span class="badge rounded-pill bg-success">Sport</span>
+                        }
+                        else if (car.CategoryName == "Compact")
+                        {
+                            <span class="badge rounded-pill bg-primary">Compact</span>
+                        }
+                        else if (car.CategoryName == "Sedan")
+                        {
+                            <span class="badge rounded-pill bg-warning text-dark">Sedan</span>
+                        }
+                        <p class="card-text text-white">@car.Description</p>
+                        <h5 class="text-white">$@car.Price/day</h5>
+                        <a asp-controller="Cars" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-primary">EDIT <i class="fa-solid fa-pen-to-square"></i></a>
+                        <a asp-controller="Cars" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger">DELETE <i class="fa-solid fa-trash-can"></i></a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="text-center" id="paginationContainer">
+        @if (Model.CurrentPage - 1 == 0)
+        {
+            <a class="btn btn-dark disabled"><i class="fa-solid fa-arrow-right-long fa-rotate-180"></i> Previous</a>
+        }
+        else
+        {
+            <a class="btn btn-dark" asp-controller="Cars" asp-action="All" asp-route-currentPage="@(Model.CurrentPage - 1)" asp-route-category="@Model.Category" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-sort="@Model.Sort"><i class="fa-solid fa-arrow-right-long fa-rotate-180"></i> Previous</a>
+        }
+
+        @if (Model.CurrentPage + 1 > Model.TotalPages)
+        {
+            <a class="btn btn-dark disabled">Next <i class="fa-solid fa-arrow-right-long"></i></a>
+        }
+        else
+        {
+            <a class="btn btn-dark" asp-controller="Cars" asp-action="All" asp-route-currentPage="@(Model.CurrentPage + 1)" asp-route-category="@Model.Category" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-sort="@Model.Sort">Next <i class="fa-solid fa-arrow-right-long"></i></a>
+        }
+    </div>
+</div>
+
+@section CustomCss{
+    <link rel="stylesheet" href="~/css/All.css" />
+    }
+
+@section CustomScripts{
+    <script>
+        let images = document.getElementsByClassName('image');
+
+        for (let img of images) {
+            img.addEventListener('click', () => {
+                window.open(img.getAttribute('src'), '_blank');
+            });
+        }
+    </script>
+    }

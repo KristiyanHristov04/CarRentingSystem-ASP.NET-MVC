@@ -1,0 +1,96 @@
+﻿@using CarRentingSystemMVC.Models.Car;
+@model CarFormModel
+
+@{
+    ViewBag.Title = "Add A Car";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <form asp-controller="Cars" asp-action="Add" method="post" class="bg-dark bg-opacity-75 p-4 mt-5">
+                <div class="form-group mb-3">
+                    <label asp-for="CategoryId" for="category" class="text-white">Choose Category:</label>
+                    <select asp-for="CategoryId" class="form-select" id="category">
+                        @foreach (var category in Model.Categories)
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Brand" for="brand" class="text-white">Brand:</label>
+                    <input asp-for="Brand" type="text" class="form-control" id="brand" placeholder="Mercedes-Benz">
+                    <span asp-validation-for="Brand" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="@Model.Model" for="model" class="text-white">Model:</label>
+                    <input asp-for="@Model.Model" type="text" class="form-control" id="model" placeholder="C220 CDI">
+                    <span asp-validation-for="@Model.Model" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="ImageUrl" for="image" class="text-white">Image:</label>
+                    <input asp-for="ImageUrl" type="text" class="form-control" id="image" placeholder="Provide a valid URL">
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Description" for="description" class="text-white">Description:</label>
+                    <textarea asp-for="Description" class="form-control" id="description" rows="3" placeholder="Stunning Mercedes waiting for you to venture around the globe..."></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Price" for="price" class="text-white">Price Per Day:</label>
+                    <input asp-for="Price" type="number" class="form-control" id="price" placeholder="260.00">
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="d-grid">
+                    <input type="submit" value="Add" class="btn btn-success" />
+                </div>           
+            </form>
+        </div>
+    </div>
+</div>
+
+@* <script>
+    // Might be added later on in the project!
+    countries();
+    async function countries() {
+        let countriesUrl = 'https://restcountries.com/v3.1/all';
+        let request = await fetch(countriesUrl);
+        let data = await request.json();
+
+        let allCountries = [];
+
+        for (let item of data) {
+            allCountries.push(item.name.common);
+        }
+
+        allCountries.sort((a, b) => a.localeCompare(b))
+        console.log(allCountries);
+
+        let countriesMenu = document.getElementById('countriesMenu');
+        for (let country of allCountries) {
+            let option = document.createElement('option');
+            option.setAttribute('value', country);
+            option.textContent = country;
+            countriesMenu.appendChild(option);
+        }
+    }
+</script> *@
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+@section CustomCss {
+    <style>
+        textarea {
+            resize: none;
+        }
+    </style>
+}
+
+@section FormCss {
+    <link rel="stylesheet" href="~/css/form.css" />
+}

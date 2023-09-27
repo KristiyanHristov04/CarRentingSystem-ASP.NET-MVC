@@ -1,0 +1,16 @@
+﻿header {
+    padding-top: 80px;
+}
+
+body {
+    background-image: url('https://images.unsplash.com/photo-1508916319692-80a99da75692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2036&q=80');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.navbar {
+    box-shadow: 0px 34px 35px 0px rgba(0,0,0,0.75)
+    !important;
+}
