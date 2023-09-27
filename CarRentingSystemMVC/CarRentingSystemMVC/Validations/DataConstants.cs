@@ -15,5 +15,7 @@
         public const double PriceMin = 50;
         public const double PriceDefault = 50;
 
+        public const int IdentityUserNameMaxLength = 20;
+        public const int IdentityUserNameMinLength = 4;
     }
 }

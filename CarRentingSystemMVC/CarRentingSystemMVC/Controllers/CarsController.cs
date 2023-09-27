@@ -1,10 +1,12 @@
 ﻿using CarRentingSystemMVC.Data;
 using CarRentingSystemMVC.Data.Models;
 using CarRentingSystemMVC.Models.Car;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRentingSystemMVC.Controllers
 {
+    [Authorize]
     public class CarsController : Controller
     {
         private readonly CarsRentDbContext _data;
@@ -14,93 +16,7 @@ namespace CarRentingSystemMVC.Controllers
             this._data = data;
         }
 
-        //public IActionResult All(string category, int minPrice, int? maxPrice, int currentPage)
-        //{
-        //    ViewBag.CurrentCategory = category;
-        //    ViewBag.AllCategories = GetCategories();
-        //    ViewBag.MaxPrice = maxPrice;
-        //    ViewBag.MinPrice = minPrice;
-
-        //    AllViewModel allViewModel = new AllViewModel();
-
-        //    if (currentPage <= 0)
-        //    {
-        //        currentPage = 1;
-        //    }
-
-        //    allViewModel.CurrentPage = currentPage;
-        //    allViewModel.Category = category;
-        //    allViewModel.MinPrice = minPrice;
-        //    allViewModel.MaxPrice = maxPrice;
-
-        //    List<CarViewModel> cars = new List<CarViewModel>();
-
-        //    if (this._data.Categories.Any(c => c.Name == category))
-        //    {
-        //        cars = this._data.Cars
-        //           .Where(c => c.Category.Name == category)
-        //           .Select(c => new CarViewModel()
-        //           {
-        //               Id = c.Id,
-        //               Brand = c.Brand,
-        //               Model = c.Model,
-        //               ImageUrl = c.ImageUrl,
-        //               Description = c.Description,
-        //               Price = c.Price,
-        //               CategoryName = c.Category.Name,
-        //               CategoryId = c.CategoryId
-        //           })
-        //       .ToList();
-
-        //        if (maxPrice != null && maxPrice > 0)
-        //        {
-        //            cars = cars.Where(c => c.Price >= minPrice && c.Price <= maxPrice).ToList();
-        //        }
-        //        else
-        //        {
-        //            cars = cars.Where(c => c.Price >= minPrice).ToList();
-        //        }
-
-        //        allViewModel.TotalCars = cars.Count;
-        //        allViewModel.Cars = cars
-        //            .Skip((allViewModel.CurrentPage - 1) * AllViewModel.CarsPerPage)
-        //            .Take(AllViewModel.CarsPerPage).ToList();
-
-        //        return View(allViewModel);
-        //    }
-
-        //    cars = this._data.Cars
-        //        .Select(c => new CarViewModel()
-        //        {
-        //            Id = c.Id,
-        //            Brand = c.Brand,
-        //            Model = c.Model,
-        //            ImageUrl = c.ImageUrl,
-        //            Description = c.Description,
-        //            Price = c.Price,
-        //            CategoryName = c.Category.Name,
-        //            CategoryId = c.CategoryId
-        //        })
-        //    .ToList();
-
-
-        //    if (maxPrice != null && maxPrice > 0)
-        //    {
-        //        cars = cars.Where(c => c.Price >= minPrice && c.Price <= maxPrice).ToList();
-        //    }
-        //    else
-        //    {
-        //        cars = cars.Where(c => c.Price >= minPrice).ToList();
-        //    }
-
-        //    allViewModel.TotalCars = cars.Count;
-        //    allViewModel.Cars = cars
-        //        .Skip((allViewModel.CurrentPage - 1) * AllViewModel.CarsPerPage)
-        //        .Take(AllViewModel.CarsPerPage).ToList();
-
-        //    return View(allViewModel);
-        //}
-
+        [AllowAnonymous]
         public IActionResult All(string category, string sort, int minPrice, int? maxPrice, int currentPage)
         {
             ViewBag.CurrentCategory = category;

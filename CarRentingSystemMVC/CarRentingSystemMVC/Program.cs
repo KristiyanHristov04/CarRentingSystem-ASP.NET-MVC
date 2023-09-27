@@ -20,6 +20,11 @@ namespace CarRentingSystemMVC
                 .AddEntityFrameworkStores<CarsRentDbContext>();
             builder.Services.AddControllersWithViews();
 
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
