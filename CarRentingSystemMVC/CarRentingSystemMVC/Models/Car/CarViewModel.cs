@@ -22,5 +22,7 @@ namespace CarRentingSystemMVC.Models.Car
 
         public int CategoryId { get; set; }
 
+        public string UserName { get; set; } = null!;
+
     }
 }

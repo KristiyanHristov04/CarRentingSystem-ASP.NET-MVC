@@ -152,9 +152,17 @@
                         }
                         <p class="card-text text-white">@car.Description</p>
                         <h5 class="text-white">$@car.Price/day</h5>
-                        <a class="btn btn-success">RENT <i class="fa-regular fa-credit-card"></i></a>
-                        <a asp-controller="Cars" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-primary">EDIT <i class="fa-solid fa-pen-to-square"></i></a>
-                        <a asp-controller="Cars" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger">DELETE <i class="fa-solid fa-trash-can"></i></a>
+
+                        @if (car.UserName == User.Identity!.Name)
+                        {
+                            <a asp-controller="Cars" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-primary">EDIT <i class="fa-solid fa-pen-to-square"></i></a>
+                            <a asp-controller="Cars" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger">DELETE <i class="fa-solid fa-trash-can"></i></a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline-warning">RENT <i class="fa-regular fa-credit-card"></i></a>
+                        }
+
                     </div>
                 </div>
             </div>

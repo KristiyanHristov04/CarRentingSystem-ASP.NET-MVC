@@ -1,6 +1,7 @@
 ﻿using CarRentingSystemMVC.Data.Models;
 using CarRentingSystemMVC.Seeding;
 using CarRentingSystemMVC.Validations;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,7 @@ namespace CarRentingSystemMVC.Data
         public CarsRentDbContext(DbContextOptions<CarsRentDbContext> options)
             : base(options)
         {
+            
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -18,6 +20,9 @@ namespace CarRentingSystemMVC.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<IdentityUser>()
+                .HasData(DataSeeder.UserSeed());
+
             builder.Entity<Category>()
                 .HasData(DataSeeder.CategoriesSeed().Select(c => c));
 

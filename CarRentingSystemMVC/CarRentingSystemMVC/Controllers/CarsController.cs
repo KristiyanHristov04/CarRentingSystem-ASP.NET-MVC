@@ -2,7 +2,9 @@
 using CarRentingSystemMVC.Data.Models;
 using CarRentingSystemMVC.Models.Car;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace CarRentingSystemMVC.Controllers
 {
@@ -52,7 +54,8 @@ namespace CarRentingSystemMVC.Controllers
                        Description = c.Description,
                        Price = c.Price,
                        CategoryName = c.Category.Name,
-                       CategoryId = c.CategoryId
+                       CategoryId = c.CategoryId,
+                       UserName = c.User.UserName
                    })
                .ToList();
 
@@ -92,7 +95,8 @@ namespace CarRentingSystemMVC.Controllers
                     Description = c.Description,
                     Price = c.Price,
                     CategoryName = c.Category.Name,
-                    CategoryId = c.CategoryId
+                    CategoryId = c.CategoryId,
+                    UserName = c.User.UserName
                 })
             .ToList();
 
@@ -133,6 +137,8 @@ namespace CarRentingSystemMVC.Controllers
         [HttpPost]
         public IActionResult Add(CarFormModel carFormModel)
         {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             carFormModel.Categories = GetCategories();
             ModelState.Remove("Categories");
             bool isCategoryIdValid = this._data.Categories.Any(c => c.Id == carFormModel.CategoryId);
@@ -153,7 +159,8 @@ namespace CarRentingSystemMVC.Controllers
                 ImageUrl = carFormModel.ImageUrl,
                 Description = carFormModel.Description,
                 Price = carFormModel.Price,
-                CategoryId = carFormModel.CategoryId
+                CategoryId = carFormModel.CategoryId,
+                UserId = currentUserId
             };
 
             this._data.Cars.Add(car);
@@ -163,7 +170,14 @@ namespace CarRentingSystemMVC.Controllers
 
         public IActionResult Edit(int id)
         {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             Car car = this._data.Cars.Find(id)!;
+
+            if (currentUserId != car.UserId)
+            {
+                return Unauthorized();
+            }
+
             CarFormModel carFormModel = new CarFormModel()
             {
                 Brand = car.Brand,
@@ -211,7 +225,14 @@ namespace CarRentingSystemMVC.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             Car car = this._data.Cars.Find(id)!;
+
+            if (currentUserId != car.UserId)
+            {
+                return Unauthorized();
+            }
+
             CarFormModel carFormModel = new CarFormModel()
             {
                 Brand = car.Brand,

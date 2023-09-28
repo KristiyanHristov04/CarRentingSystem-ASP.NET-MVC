@@ -1,4 +1,5 @@
 ﻿using CarRentingSystemMVC.Validations;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -32,5 +33,10 @@ namespace CarRentingSystemMVC.Data.Models
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
         public Category Category { get; set; } = null!;
+
+        [Required]
+        [ForeignKey(nameof(User))]
+        public string UserId { get; set; } = null!;
+        public IdentityUser User { get; set; } = null!;
     }
 }
