@@ -157,6 +157,7 @@ namespace CarRentingSystemMVC.Areas.Identity.Pages.Account
                 catch (Exception e)
                 {
                     //ViewData["ErrorMessage"] = "Email is already used.";
+                    ModelState.AddModelError(string.Empty, "Email address is already used.");
                     return Page();
                 }
             }

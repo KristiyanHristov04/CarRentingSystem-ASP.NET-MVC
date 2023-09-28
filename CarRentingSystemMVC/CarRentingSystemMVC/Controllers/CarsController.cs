@@ -234,6 +234,7 @@ namespace CarRentingSystemMVC.Controllers
             this._data.SaveChanges();
             return RedirectToAction(nameof(All));
         }
+
         private List<CategoryViewModel> GetCategories()
         {
             return this._data.Categories.Select(c => new CategoryViewModel()
