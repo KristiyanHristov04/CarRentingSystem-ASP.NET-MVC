@@ -1,0 +1,70 @@
+﻿@using CarRentingSystemMVC.Models.Rent;
+@model RentFormModel
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <form asp-controller="Rents" asp-action="Checkout" method="post" class="bg-dark bg-opacity-75 p-4 mt-5">
+                <div class="form-group mb-3">
+                    <label asp-for="CreditCardNumber" class="text-white">Card Number:</label>
+                    <input asp-for="CreditCardNumber" class="form-control" placeholder="0000 0000 0000"/>
+                    <span asp-validation-for="CreditCardNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="CreditCardCVV" class="text-white">CVV:</label>
+                    <input asp-for="CreditCardCVV" class="form-control" placeholder="000">
+                    <span asp-validation-for="CreditCardCVV" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="FirstName" class="text-white">First Name:</label>
+                    <input asp-for="FirstName" class="form-control" placeholder="John">
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="LastName" class="text-white">Last Name:</label>
+                    <input asp-for="LastName" type="text" class="form-control" placeholder="Doe">
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Address" class="text-white">Address:</label>
+                    <input asp-for="Address" class="form-control" placeholder="22 Baker Street">
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Days" class="text-white">Days:</label>
+                    <input asp-for="Days" class="form-control" id="days" placeholder="2" min="1"/>
+                    <span asp-validation-for="Days" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3 d-none">
+                    <input asp-for="PricePerDay" class="form-control" id="pricePerDay" />
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="TotalPrice" class="text-white">Total Price:</label>
+                    <input asp-for="TotalPrice" class="form-control" disabled id="totalPrice"/>
+                    <span asp-validation-for="TotalPrice" class="text-danger"></span>
+                </div>
+                <div class="d-grid">
+                    <input type="submit" value="Checkout" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+@section CustomScripts {
+    <script>
+        let daysInputField = document.getElementById('days');
+        let totalPriceInputField = document.getElementById('totalPrice');
+        let pricePerDay = document.getElementById('pricePerDay').value;
+        daysInputField.addEventListener('input', () => {
+            totalPriceInputField.value = Number(daysInputField.value) * pricePerDay;
+        });
+    </script>
+}

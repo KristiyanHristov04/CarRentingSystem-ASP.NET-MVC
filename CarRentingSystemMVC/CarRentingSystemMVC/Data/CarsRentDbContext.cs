@@ -17,6 +17,7 @@ namespace CarRentingSystemMVC.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Car> Cars { get; set; }
+        public DbSet<Rent> Rents { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

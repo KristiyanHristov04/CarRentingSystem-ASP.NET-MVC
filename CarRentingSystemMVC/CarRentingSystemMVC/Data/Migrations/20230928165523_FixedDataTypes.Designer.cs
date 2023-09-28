@@ -4,6 +4,7 @@ using CarRentingSystemMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRentingSystemMVC.Data.Migrations
 {
     [DbContext(typeof(CarsRentDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230928165523_FixedDataTypes")]
+    partial class FixedDataTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,7 +81,7 @@ namespace CarRentingSystemMVC.Data.Migrations
                             ImageUrl = "https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=https://cdni.autocarindia.com/ExtraImages/20230714060819_BMW_X5_facelift.jpg",
                             Model = "X5",
                             Price = 55.310000000000002,
-                            UserId = "16c3ef47-184c-4159-9045-e571c48489c8"
+                            UserId = "8d7ddf06-ab1f-49d9-9312-a63669fc7f59"
                         },
                         new
                         {
@@ -90,7 +92,7 @@ namespace CarRentingSystemMVC.Data.Migrations
                             ImageUrl = "https://media.audifrance.fr/wp-content/uploads/2020/08/929104-2000x1414.jpg",
                             Model = "A7",
                             Price = 165.28999999999999,
-                            UserId = "16c3ef47-184c-4159-9045-e571c48489c8"
+                            UserId = "8d7ddf06-ab1f-49d9-9312-a63669fc7f59"
                         });
                 });
 
@@ -313,17 +315,17 @@ namespace CarRentingSystemMVC.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "16c3ef47-184c-4159-9045-e571c48489c8",
+                            Id = "8d7ddf06-ab1f-49d9-9312-a63669fc7f59",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ef1ffe4d-e3f0-48e8-b098-6ddc4bdff29a",
+                            ConcurrencyStamp = "3ef1d0c7-cae0-4981-b026-57c078270781",
                             Email = "user@abv.bg",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@ABV.BG",
                             NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAEAACcQAAAAELqxz+m/d42gXU57Ufmo4XxPv6moIR5N2KNq/x3KmYDVww3G8Q8JmTqqz5PqbXLlAQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKJBb2E+t0PRtHoxlf4ttVa2957RPFheCwSc0fiRHpU/JHxW/nuavCTM2AhY9CxXKw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7d03d657-b6df-45d5-a57a-715ba6741ed6",
+                            SecurityStamp = "98463cd2-0fa3-4cbf-9f83-01e748b4820a",
                             TwoFactorEnabled = false,
                             UserName = "user"
                         });

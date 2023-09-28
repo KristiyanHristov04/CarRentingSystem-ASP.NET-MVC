@@ -76,7 +76,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                     </div>
-                    <input asp-for="MinPrice" class="form-control mb-3 w-50" />
+                    <input asp-for="MinPrice" class="form-control mb-3 w-50" min="0" />
                 </div>
             </div>
 
@@ -88,7 +88,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
                         </div>
-                        <input asp-for="MaxPrice" class="form-control mb-3 w-50" />
+                        <input asp-for="MaxPrice" class="form-control mb-3 w-50" min="0" />
                     </div>
                 }
                 else
@@ -98,7 +98,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
                         </div>
-                        <input asp-for="MaxPrice" class="form-control mb-3 w-50" />
+                        <input asp-for="MaxPrice" class="form-control mb-3 w-50" min="1"/>
                     </div>
                 }
             </div>
@@ -160,7 +160,7 @@
                         }
                         else
                         {
-                            <a class="btn btn-outline-warning">RENT <i class="fa-regular fa-credit-card"></i></a>
+                            <a asp-controller="Rents" asp-action="Checkout" asp-route-id="@car.Id" class="btn btn-outline-warning">RENT <i class="fa-regular fa-credit-card"></i></a>
                         }
 
                     </div>

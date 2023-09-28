@@ -24,6 +24,7 @@ namespace CarRentingSystemMVC.Seeding
 
             return user;
         }
+
         public static List<Category> CategoriesSeed()
         {
             Category category01 = new Category()

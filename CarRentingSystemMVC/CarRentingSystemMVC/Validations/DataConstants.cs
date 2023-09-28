@@ -17,5 +17,17 @@
 
         public const int IdentityUserNameMaxLength = 20;
         public const int IdentityUserNameMinLength = 4;
+
+        public const int DaysMaxLength = 365;
+        public const int DaysMinLength = 1;
+
+        public const int CreditCardCVVMinLength = 3;
+        public const int CreditCardCVVMaxLength = 3;
+
+        public const int CVVMinValue = 100;
+        public const int CVVMaxValue = 999;
+
+        public const string CreditCardRegularExpression = @"[0-9]{4}\s[0-9]{4}\s[0-9]{4}";
+        public const string CreditCardCVVRegularExpression = @"[0-9]{3}";
     }
 }
