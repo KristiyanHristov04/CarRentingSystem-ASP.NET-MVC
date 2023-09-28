@@ -18,7 +18,7 @@ namespace CarRentingSystemMVC.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "5b5a5df0-89da-401f-bd6a-be50dceb212d", 0, "59a17b26-4343-461f-abf2-1d9240025ad4", "user@abv.bg", false, false, null, "USER@ABV.BG", "USER", "AQAAAAEAACcQAAAAEOcL9fSwtAbw0+otmISVHwC/py3V/mUgj6xE5/6PWhQ+zmVvlceorwh5RKoAIIYg6g==", null, false, "e5fffa87-bf65-4c91-9dbb-805af57b976c", false, "user" });
+                values: new object[] { "5b5a5df0-89da-401f-bd6a-be50dceb212d", 0, "59a17b26-4343-461f-abf2-1d9240025ad4", "user@abv.bg", true, false, null, "USER@ABV.BG", "USER", "AQAAAAEAACcQAAAAEOcL9fSwtAbw0+otmISVHwC/py3V/mUgj6xE5/6PWhQ+zmVvlceorwh5RKoAIIYg6g==", null, false, "e5fffa87-bf65-4c91-9dbb-805af57b976c", false, "user" });
 
             migrationBuilder.UpdateData(
                 table: "Cars",
