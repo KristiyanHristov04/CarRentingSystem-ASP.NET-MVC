@@ -18,6 +18,9 @@ namespace CarRentingSystemMVC.Models.Rent
         [RegularExpression(DataConstants.CreditCardCVVRegularExpression, ErrorMessage = "Card number's CVV/CVC must be three digits")]
         public string CreditCardCVV { get; set; } = null!;
 
+        [Required]
+        public DateTime ExpirationDate { get; set; }
+
         [Required(ErrorMessage = "First name field is required.")]
         public string FirstName { get; set; } = null!;
 

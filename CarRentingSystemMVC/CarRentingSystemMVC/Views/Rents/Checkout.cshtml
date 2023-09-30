@@ -58,7 +58,22 @@
     <div class="row">
         <div class="col-6 offset-3">
             <form asp-controller="Rents" asp-action="Checkout" method="post" class="bg-dark bg-opacity-75 p-4 mt-5">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row align-items-baseline">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="FirstName" class="text-white">First Name:</label>
+                            <input asp-for="FirstName" class="form-control" placeholder="John">
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="LastName" class="text-white">Last Name:</label>
+                            <input asp-for="LastName" type="text" class="form-control" placeholder="Doe">
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
                     <div class="col-sm-12 col-md-8">
                         <div class="form-group mb-3">
                             <label asp-for="CreditCardNumber" class="text-white">Card Number:</label>
@@ -73,21 +88,14 @@
                             <span asp-validation-for="CreditCardCVV" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group mb-3">
-                            <label asp-for="FirstName" class="text-white">First Name:</label>
-                            <input asp-for="FirstName" class="form-control" placeholder="John">
-                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                            <label asp-for="ExpirationDate" class="text-white">Expiration Date:</label>
+                            <input type="month" asp-for="ExpirationDate" class="form-control">
+                            <span asp-validation-for="ExpirationDate" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-4">
-                        <div class="form-group mb-3">
-                            <label asp-for="LastName" class="text-white">Last Name:</label>
-                            <input asp-for="LastName" type="text" class="form-control" placeholder="Doe">
-                            <span asp-validation-for="LastName" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group mb-3">
                             <label asp-for="Address" class="text-white">Address:</label>
                             <input asp-for="Address" class="form-control" placeholder="22 Baker Street">

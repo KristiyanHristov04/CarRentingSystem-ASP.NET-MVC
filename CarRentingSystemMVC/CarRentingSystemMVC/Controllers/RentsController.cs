@@ -55,10 +55,24 @@ namespace CarRentingSystemMVC.Controllers
 
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            if (rentFormModel.ExpirationDate.Year < DateTime.Now.Year)
+            {
+                ModelState.AddModelError(string.Empty, "Your credit/debit card has expired.");
+
+                return View(rentFormModel);
+            }
+            else if (rentFormModel.ExpirationDate.Year == DateTime.Now.Year && rentFormModel.ExpirationDate.Month < DateTime.Now.Month)
+            {
+                ModelState.AddModelError(string.Empty, "Your credit/debit card has expired.");
+
+                return View(rentFormModel);
+            }
+
             Rent rent = new Rent()
             {
                 CreditCardNumber = rentFormModel.CreditCardNumber,
                 CreditCardCVV = rentFormModel.CreditCardCVV,
+                ExpirationDate = rentFormModel.ExpirationDate.ToString("MM/yyyy"),
                 FirstName = rentFormModel.FirstName,
                 LastName = rentFormModel.LastName,
                 Address = rentFormModel.Address,

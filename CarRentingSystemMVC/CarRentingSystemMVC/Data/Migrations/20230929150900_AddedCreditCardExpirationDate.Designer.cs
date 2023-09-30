@@ -4,6 +4,7 @@ using CarRentingSystemMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRentingSystemMVC.Data.Migrations
 {
     [DbContext(typeof(CarsRentDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230929150900_AddedCreditCardExpirationDate")]
+    partial class AddedCreditCardExpirationDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,7 +81,7 @@ namespace CarRentingSystemMVC.Data.Migrations
                             ImageUrl = "https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=https://cdni.autocarindia.com/ExtraImages/20230714060819_BMW_X5_facelift.jpg",
                             Model = "X5",
                             Price = 55.310000000000002,
-                            UserId = "806def80-624f-4ec7-8dec-041f91a82798"
+                            UserId = "176b8ef2-e79a-431b-a2ee-7ba36d0e0ead"
                         },
                         new
                         {
@@ -90,7 +92,7 @@ namespace CarRentingSystemMVC.Data.Migrations
                             ImageUrl = "https://media.audifrance.fr/wp-content/uploads/2020/08/929104-2000x1414.jpg",
                             Model = "A7",
                             Price = 165.28999999999999,
-                            UserId = "806def80-624f-4ec7-8dec-041f91a82798"
+                            UserId = "176b8ef2-e79a-431b-a2ee-7ba36d0e0ead"
                         });
                 });
 
@@ -172,9 +174,8 @@ namespace CarRentingSystemMVC.Data.Migrations
                     b.Property<int>("Days")
                         .HasColumnType("int");
 
-                    b.Property<string>("ExpirationDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -317,17 +318,17 @@ namespace CarRentingSystemMVC.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "806def80-624f-4ec7-8dec-041f91a82798",
+                            Id = "176b8ef2-e79a-431b-a2ee-7ba36d0e0ead",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9a5fae97-bc92-4750-8dce-5f42cedc85ad",
+                            ConcurrencyStamp = "2546d8ec-eb0c-4129-8491-6ea750037e53",
                             Email = "user@abv.bg",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@ABV.BG",
                             NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBPL+r+qzMytMRlj3oFnE2Z/3G03OLD72eSU6IyDckdri2cX7gB2reuMw5g339M+Hw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAcrDmKcbGag8gUq25T1KAlt1OQgrLREHMQGQl3zCRR6Ov8VpDyMI5HVHbmbCoWmDA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8218efdf-975b-44e1-a8de-24b4b2f99aab",
+                            SecurityStamp = "761c4390-2e69-44ba-b74c-1e4690d12445",
                             TwoFactorEnabled = false,
                             UserName = "user"
                         });
