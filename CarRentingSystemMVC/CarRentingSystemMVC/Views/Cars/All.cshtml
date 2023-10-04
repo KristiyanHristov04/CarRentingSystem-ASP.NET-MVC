@@ -151,7 +151,7 @@
                             <span class="badge rounded-pill bg-warning text-dark">Sedan</span>
                         }
                         <p class="card-text text-white">@car.Description</p>
-                        <h5 class="text-white">$@car.Price/day</h5>
+                        <h5 class="text-white">@($"{@car.Price:f2}$/day")</h5>
 
                         @if (car.UserName == User.Identity!.Name)
                         {
