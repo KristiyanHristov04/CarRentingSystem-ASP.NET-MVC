@@ -65,7 +65,7 @@
         let priceInputField = document.getElementById('price');
         priceInputField.value = (Number(priceInputField.value)).toFixed(2);
         priceInputField.addEventListener('input', () => {
-            priceInputField.value = (Number(priceInputField.value)).toFixed(2);
+            priceInputField.value = Number(priceInputField.value).toFixed(2);
             console.log(priceInputField.value);
         });
     </script>
