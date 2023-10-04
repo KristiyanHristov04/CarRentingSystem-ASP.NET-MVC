@@ -96,7 +96,7 @@
         let pricePerDay = document.getElementById('pricePerDay').value;
         totalPriceInputField.value = Number(daysInputField.value) * pricePerDay;
         daysInputField.addEventListener('input', () => {
-            totalPriceInputField.value = Number(daysInputField.value) * pricePerDay;
+            totalPriceInputField.value = (Number(daysInputField.value) * pricePerDay).toFixed(2);
         });
     </script>
 }
