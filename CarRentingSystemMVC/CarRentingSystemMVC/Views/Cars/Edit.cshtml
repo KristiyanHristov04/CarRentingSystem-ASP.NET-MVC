@@ -67,3 +67,15 @@
 @section FormCss {
     <link rel="stylesheet" href="~/css/form.css" />
 }
+
+@section CustomScripts {
+    <script>
+        let priceInputField = document.getElementById('price');
+        priceInputField.value = (Number(priceInputField.value)).toFixed(2);
+        priceInputField.addEventListener('input', () => {
+            priceInputField.value = Number(priceInputField.value).toFixed(2);
+            console.log(priceInputField.value);
+            console.log(typeof priceInputField.value);
+        });
+    </script>
+}

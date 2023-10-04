@@ -59,3 +59,14 @@
         }
     </style>
 }
+
+@section CustomScripts {
+    <script>
+        let priceInputField = document.getElementById('price');
+        priceInputField.value = (Number(priceInputField.value)).toFixed(2);
+        priceInputField.addEventListener('input', () => {
+            priceInputField.value = (Number(priceInputField.value)).toFixed(2);
+            console.log(priceInputField.value);
+        });
+    </script>
+}
