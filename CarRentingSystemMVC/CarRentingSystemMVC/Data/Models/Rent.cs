@@ -19,7 +19,7 @@ namespace CarRentingSystemMVC.Data.Models
         public string CreditCardCVV { get; set; } = null!;
 
         [Required]
-        public string ExpirationDate { get; set; }
+        public string ExpirationDate { get; set; } = null!;
 
         [Required]
         public string FirstName { get; set; } = null!;
