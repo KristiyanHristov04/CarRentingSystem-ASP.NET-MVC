@@ -12,13 +12,9 @@ namespace CarRentingSystemMVC.Controllers
     public class RentsController : Controller
     {
         private readonly CarsRentDbContext _data;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        public RentsController(CarsRentDbContext data, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public RentsController(CarsRentDbContext data)
         {
             this._data = data;
-            this._userManager = userManager;
-            this._signInManager = signInManager;
         }
 
         public IActionResult Checkout(int id)
